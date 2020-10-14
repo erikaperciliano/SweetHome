@@ -1,0 +1,105 @@
+:root {
+    --yellow-color: #ffff09;
+    --white-color: #fff;
+  }
+  
+#sweet{
+    margin-top: 20px;
+}
+
+#page-landing{
+    /*faz com que a pág oculpe 100% tanto da largura quanto da altura*/
+    width: 100vw;
+    height: 100vh;
+
+    background: #135a43;
+
+    display: flex;
+    /*alinha o conteúdo ao centro, tanto horizontal quanto vertical*/
+    justify-content: center;
+    align-items: center;
+}
+
+#page-landing .content-wrapper{
+    position: relative;
+
+    /*ocupará toda a lagura da tela, porém se a tela for 1100px ele parará por aí*/
+    width: 100%;
+    max-width: 1100px;
+
+    height: 100%;
+    max-height: 680px;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column; /*para que os elementos fiquem um em cima do outro*/
+    justify-content: space-between;
+
+    background: url('../../images/all.png') no-repeat 80% center;
+}
+
+#page-landing .content-wrapper main{
+    max-width: 350px;
+}
+
+#page-landing .content-wrapper main h1{
+    font-family: 'Bigelow Rules', cursive;
+    color:#ff8303;
+    font-size: 76px;
+    font-weight: 900;
+    line-height: 70px;
+}
+
+
+#page-landing .content-wrapper main p {
+    font-family: 'Farsan', cursive;
+    margin-top: 40px;
+    font-size: 24px;
+    line-height: 34px;
+    color: var(--yellow-color);
+}
+
+.content-wrapper .location{
+    font-family: 'Farsan', cursive;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    font-size: 24px;
+    line-height: 34px;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: right;
+}
+
+.content-wrapper .location strong {
+    font-weight: 800;
+    color: var(--white-color);
+}
+
+.content-wrapper .location span {
+    color: var(--white-color);
+}
+
+.content-wrapper .enter-app {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 80px;
+    height: 80px;
+    background: #ff8303;
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: background-color 0.2s;
+}
+
+.content-wrapper .enter-app:hover {
+    background:#ffe003; 
+}
