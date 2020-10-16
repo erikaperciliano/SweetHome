@@ -9,3 +9,4 @@ This is a project to encourage people to visit shelters for the elderly. This is
 * CSS
 * HTML
 * React Native
+* SQLite
