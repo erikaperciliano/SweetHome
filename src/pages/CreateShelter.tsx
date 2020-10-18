@@ -1,6 +1,7 @@
 import React, { FormEvent, useState, ChangeEvent } from "react";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
+import { useHistory } from "react-router-dom";
 
 
 import { FiPlus } from 'react-icons/fi';
@@ -9,9 +10,13 @@ import Sidebar from '../components/Sidebar';
 import mapIcon from "../utils/mapIcon";
 
 import '../styles/pages/create-shelter.css';
+import api from "../services/api";
+
 
 
 export default function CreateOrphanage() {
+  const history = useHistory();
+
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
   const [name, setName] = useState('');
@@ -51,21 +56,31 @@ export default function CreateOrphanage() {
     //console.log(e.target.files);
   }
 
-  function handleSubmit(e: FormEvent){
+  async function handleSubmit(e: FormEvent){
     e.preventDefault();
 
     const {latitude, longitude} = position;
 
-    console.log({
-      position,
-      name,
-      about,
-      latitude, 
-      longitude,
-      instructions,
-      opening_hours,
-      open_on_weekends
+    const data = new FormData(); //é a criação do Multipart Form 
+
+    data.append('name', name);
+    data.append('about', about);
+    data.append('latitude', String(latitude));//convert para string, pois este era número
+    data.append('longitude',  String(longitude));
+    data.append('instructions', instructions);
+    data.append('opening_hours', opening_hours);
+    data.append('open_on_weekends', String(open_on_weekends)); // estava como booleano
+    
+    images.forEach(image => {
+      data.append('images', image);
     })
+
+    //Chamada API que faz o cadastro
+    await api.post('resthomes', data);
+
+    alert('Cadastro realizado com sucesso!');
+
+    history.push('/app') //envia o usuário para tela do mapa
   }
 
   return (
@@ -108,6 +123,7 @@ export default function CreateOrphanage() {
               <textarea id="name"  value={about} onChange={e => setAbout(e.target.value)} maxLength={300} />
             </div>
 
+            {/* implementar botão para excluir as imgs (terá que remover tanto o array de images quanto o de previewImages)*/}
             <div className="input-block">
               <label htmlFor="images">Photos</label>
 

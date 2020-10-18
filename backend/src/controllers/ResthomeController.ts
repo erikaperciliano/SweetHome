@@ -17,7 +17,7 @@ export default {
         return res.json(resthomeView.renderMany(resthomes));
     },
 
-    async show(req:Request, res:Response){
+    async show(req: Request, res: Response){
         const { id } = req.params;
 
         const resthomesRepository = getRepository(Resthome);
@@ -55,7 +55,7 @@ export default {
             about,
             instructions,
             opening_hours,
-            open_on_weekends,
+            open_on_weekends: open_on_weekends === 'true',
             images
         };
         //esquema de validação da resthome
