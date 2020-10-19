@@ -1,0 +1,1 @@
+declare module '*.png'; //todo arquivo que remina com .png é um módulo oq significa que pode ser exportado
